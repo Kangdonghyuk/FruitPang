@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class ItemCreator : MonoBehaviour
 {
+    public static ItemCreator I;
     public GameObject bombPrefab;
 
+    void Awake() {
+        I = this;
+    }
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Space)) {

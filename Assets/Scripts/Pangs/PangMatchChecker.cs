@@ -40,6 +40,8 @@ public class PangMatchChecker : MonoBehaviour
             }
  
             if(checkedCount >= 3) {
+                if(checkedCount >= 4)
+                    ItemCreator.I.CreateItem();
                 for(int checkedIndex = 0; checkedIndex < PangInfo.PANG_MAX; checkedIndex++) {
                     if(pangChecked[checkedIndex] == 1)
                         PangCreator.I.Destroy(checkedIndex);
