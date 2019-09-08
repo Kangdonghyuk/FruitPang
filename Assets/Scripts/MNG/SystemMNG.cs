@@ -7,6 +7,8 @@ public class SystemMNG : MonoBehaviour
 {
     public static SystemMNG I = null;
 
+    public int rankScore = 0;
+
     void Awake() {
         if(I == null) {
             I = this;

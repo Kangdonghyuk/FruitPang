@@ -29,6 +29,9 @@ public class PangMatchChecker : MonoBehaviour
 
     void Update()
     {
+        if(Time.timeScale == 0.0f)
+            return ;
+
         pangList = PangCreator.I.pangList;
 
         for(int index = 0; index < PangInfo.PANG_MAX; index++) {
@@ -40,7 +43,7 @@ public class PangMatchChecker : MonoBehaviour
             }
  
             if(checkedCount >= 3) {
-                if(checkedCount >= 4)
+                if(Random.Range(0, 5) == 0)
                     ItemCreator.I.CreateItem();
                 for(int checkedIndex = 0; checkedIndex < PangInfo.PANG_MAX; checkedIndex++) {
                     if(pangChecked[checkedIndex] == 1)

@@ -37,6 +37,9 @@ public class GameMNG : MonoBehaviour
             nowTime -= Time.deltaTime;
 
             uiMNG.SetTimeBarValue(nowTime / lifeTime);
+
+            if(nowTime <= 0f)
+                GameOver();
         }
     }
     
@@ -58,5 +61,10 @@ public class GameMNG : MonoBehaviour
     public void MenuScene() {
         Time.timeScale = 1.0f;
         SystemMNG.I.LoadScene("MenuScene");
+    }
+
+    public void GameOver() {
+        Time.timeScale = 0.0f;
+        uiMNG.ShowOverPanel();
     }
 }
