@@ -4,19 +4,22 @@ using UnityEngine;
 
 public class MenuMNG : MonoBehaviour
 {
-    // Start is called before the first frame update
+    void Awake() {
+        if(SystemMNG.I == null)
+            Instantiate(Resources.Load("Prefabs/System/SystemMNG"));
+    }
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
     }
 
-    public void GameStart() {
+    public void GameScene() {
         SystemMNG.I.LoadScene("GameScene");
     }
 }

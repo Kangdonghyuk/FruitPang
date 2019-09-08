@@ -13,8 +13,11 @@ public class GameMNG : MonoBehaviour
     bool isPlay;
 
     void Awake() {
+        if(SystemMNG.I == null)
+            Instantiate(Resources.Load("Prefabs/System/SystemMNG"));
+
         I = this;
-        
+
         uiMNG = GetComponent<UIMNG>();
     }
 
@@ -37,16 +40,23 @@ public class GameMNG : MonoBehaviour
         }
     }
     
-    public void OnOffPlay() {
+    public void PauseBtn() {
         isPlay = !isPlay;
 
         if(isPlay == true)
             Time.timeScale = 1.0f;
         else
             Time.timeScale = 0.0f;
+
+        uiMNG.ShowPausePanel(!isPlay);
     }
 
     public void AddScore(int score) {
         uiMNG.AddScore(score);
+    }
+
+    public void MenuScene() {
+        Time.timeScale = 1.0f;
+        SystemMNG.I.LoadScene("MenuScene");
     }
 }

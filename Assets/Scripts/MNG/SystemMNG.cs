@@ -17,7 +17,8 @@ public class SystemMNG : MonoBehaviour
 
     void Start()
     {
-        SceneManager.LoadScene("MenuScene");
+        if(SceneManager.GetActiveScene().name == "StartScene")
+            SceneManager.LoadScene("MenuScene");
     }
 
 
@@ -29,6 +30,14 @@ public class SystemMNG : MonoBehaviour
             SceneManager.LoadScene("MenuScene");
         if(Input.GetKeyDown(KeyCode.Alpha3))
             SceneManager.LoadScene("GameScene");
+
+        if(Input.GetKeyUp(KeyCode.Escape)) {
+            string nowSceneName = SceneManager.GetActiveScene().name;
+            if(nowSceneName == "MenuScene")
+                Application.Quit();
+            else if(nowSceneName == "GameScene")
+                GameMNG.I.PauseBtn();
+        }
     }
 
     public void LoadScene(string loadScene) {
