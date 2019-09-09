@@ -70,6 +70,7 @@ public class PangMatchChecker : MonoBehaviour
             }
         }
 
+        ItemCreator.I.Boom();
         GameMNG.I.AddScore(10);
     }
 

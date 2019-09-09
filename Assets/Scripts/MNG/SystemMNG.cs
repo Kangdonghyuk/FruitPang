@@ -19,6 +19,8 @@ public class SystemMNG : MonoBehaviour
 
     void Start()
     {
+        Screen.SetResolution(Screen.width, Screen.width * 18 / 9, true);
+
         if(SceneManager.GetActiveScene().name == "StartScene")
             SceneManager.LoadScene("MenuScene");
     }

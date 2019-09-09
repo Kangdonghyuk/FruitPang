@@ -6,9 +6,12 @@ public class ItemCreator : MonoBehaviour
 {
     public static ItemCreator I;
     public GameObject bombPrefab;
+    AudioSource audioSource;
 
     void Awake() {
         I = this;
+
+        audioSource = GetComponent<AudioSource>();
     }
     void Update()
     {
@@ -18,6 +21,10 @@ public class ItemCreator : MonoBehaviour
     }
 
     public void CreateItem() {
-        Instantiate(bombPrefab, new Vector3(Random.Range(-2.08f, 2.09f), 3.3f, 0f), Quaternion.identity);
+        Instantiate(bombPrefab, new Vector3(Random.Range(-2.08f, 2.09f), 3.3f, -0.1f), Quaternion.identity);
+    }
+
+    public void Boom() {
+        audioSource.Play();
     }
 }

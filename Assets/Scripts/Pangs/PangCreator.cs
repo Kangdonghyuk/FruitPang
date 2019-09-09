@@ -33,9 +33,16 @@ public class PangClass {
 public class PangCreator : MonoBehaviour
 {
     public static PangCreator I;
-    void Awake() { I = this; }
+    AudioSource audioSource;
+
+    void Awake() {
+        I = this;
+
+        audioSource = GetComponent<AudioSource>();
+    }
 
     public GameObject pangPrefab;
+    public GameObject pangEfectPrefab;
     public PangClass[] pangList;
 
     void Start()
@@ -49,7 +56,6 @@ public class PangCreator : MonoBehaviour
         StartCoroutine(CreatePang());
     }
 
-
     void Update()
     {
         
@@ -59,6 +65,10 @@ public class PangCreator : MonoBehaviour
         pangList[id].isActive = false;
     }
     public void Destroy(int id) {
+        audioSource.Play();
+
+        Instantiate(pangEfectPrefab, pangList[id].position, Quaternion.identity);
+
         pangList[id].isActive = false;
         pangList[id].Destroy();
     }

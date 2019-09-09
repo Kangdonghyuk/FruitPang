@@ -54,7 +54,9 @@ public class Pang : MonoBehaviour
 
         this.id = id;
         type = (int)Random.Range(0, PangInfo.TYPE_MAX);
-        spRenderer.color = PangInfo.colorList[type];
+        //spRenderer.color = PangInfo.colorList[type];
+
+        spRenderer.sprite = PangInfo.pangImageList[type];
 
         isActive = true;
 
