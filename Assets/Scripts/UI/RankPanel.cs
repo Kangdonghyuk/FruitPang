@@ -11,7 +11,7 @@ public class RankPanel : MonoBehaviour
 
     void Awake() {
         for(int index = 0; index < 5; index++) {
-            rankText[index] = transform.GetChild(index).GetComponent<Text>();
+            rankText[index] = transform.GetChild(index+1).GetComponent<Text>();
             rankScore[index] = 0;
         }
         rankScore[5] = 0;
@@ -19,8 +19,6 @@ public class RankPanel : MonoBehaviour
 
     void Start()
     {
-        PlayerPrefs.GetInt("score1", 0);
-
         for(int index = 0; index < 5; index++) {
             rankText[index].text = PlayerPrefs.GetInt("save_score_" + index.ToString(), 0).ToString();
             rankScore[index] = int.Parse(rankText[index].text);
