@@ -72,6 +72,10 @@ public class PangMatchChecker : MonoBehaviour
 
         ItemCreator.I.Boom();
         GameMNG.I.AddScore(10);
+        
+        #if UNITY_IPHONE || UNITY_ANDROID
+            Handheld.Vibrate();
+        #endif
     }
 
     void CheckAround(int offset) {

@@ -15,14 +15,14 @@ public class SystemMNG : MonoBehaviour
 
             DontDestroyOnLoad(this);
         }
+
+        Screen.SetResolution(Screen.width, Screen.width * 18 / 9, true);
     }
 
     void Start()
     {
-        Screen.SetResolution(Screen.width, Screen.width * 18 / 9, true);
-
-        if(SceneManager.GetActiveScene().name == "StartScene")
-            SceneManager.LoadScene("MenuScene");
+        //if(SceneManager.GetActiveScene().name == "StartScene")
+        //    SceneManager.LoadScene("MenuScene");
     }
 
 
@@ -38,7 +38,7 @@ public class SystemMNG : MonoBehaviour
         if(Input.GetKeyUp(KeyCode.Escape)) {
             string nowSceneName = SceneManager.GetActiveScene().name;
             if(nowSceneName == "MenuScene")
-                Application.Quit();
+                SceneManager.LoadScene("QuitScene");
             else if(nowSceneName == "GameScene")
                 GameMNG.I.PauseBtn();
         }
