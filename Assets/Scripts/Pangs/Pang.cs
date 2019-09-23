@@ -7,7 +7,7 @@ public class Pang : MonoBehaviour
     SpriteRenderer spRenderer;
     Rigidbody2D rigid;
     bool isFollowing;
-    bool isActive;
+    bool isActive, isMenu;
     public int type;
     int id;
 
@@ -23,6 +23,7 @@ public class Pang : MonoBehaviour
         rigid.simulated = false;
         isFollowing = false;
         isActive = false;
+        isMenu = false;
         type = -1;
         id = -1;
     }
@@ -35,6 +36,13 @@ public class Pang : MonoBehaviour
 
         if(!isActive)
             return ;
+
+        if(isMenu) {
+            float menuY = transform.position.y;
+            if(menuY <= -5.0f)
+                Destroy(gameObject);
+            return ;
+        }
 
         if(isFollowing) {
             transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + (Vector3.forward * 10);
@@ -59,6 +67,22 @@ public class Pang : MonoBehaviour
         spRenderer.sprite = PangInfo.pangImageList[type];
 
         isActive = true;
+
+        return type;
+    }
+    public int Create(int id, float posY) {
+        rigid.simulated = true;
+        rigid.velocity = Vector3.zero;
+        transform.position = new Vector3(Random.Range(-2.08f, 2.09f), posY, 0f);
+
+        this.id = id;
+        type = (int)Random.Range(0, PangInfo.TYPE_MAX);
+        //spRenderer.color = PangInfo.colorList[type];
+
+        spRenderer.sprite = PangInfo.pangImageList[type];
+
+        isActive = true;
+        isMenu = true;
 
         return type;
     }
