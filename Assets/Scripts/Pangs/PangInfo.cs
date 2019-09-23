@@ -13,15 +13,15 @@ public static class PangInfo
     };
 
     public readonly static Sprite[] pangImageList = new Sprite[9] {
-        Resources.Load<Sprite>("Image/Pang/0") as Sprite,
-        Resources.Load<Sprite>("Image/Pang/1") as Sprite,
-        Resources.Load<Sprite>("Image/Pang/2") as Sprite,
-        Resources.Load<Sprite>("Image/Pang/3") as Sprite,
-        Resources.Load<Sprite>("Image/Pang/4") as Sprite,
-        Resources.Load<Sprite>("Image/Pang/5") as Sprite,
-        Resources.Load<Sprite>("Image/Pang/6") as Sprite,
-        Resources.Load<Sprite>("Image/Pang/7") as Sprite,
-        Resources.Load<Sprite>("Image/Pang/8") as Sprite
+        Resources.Load<Sprite>("Image/Fruit/fruit_apple") as Sprite,
+        Resources.Load<Sprite>("Image/Fruit/fruit_grapefruit") as Sprite,
+        Resources.Load<Sprite>("Image/Fruit/fruit_kiwi") as Sprite,
+        Resources.Load<Sprite>("Image/Fruit/fruit_lemon") as Sprite,
+        Resources.Load<Sprite>("Image/Fruit/fruit_orange") as Sprite,
+        Resources.Load<Sprite>("Image/Fruit/fruit_peach") as Sprite,
+        Resources.Load<Sprite>("Image/Fruit/fruit_pear") as Sprite,
+        Resources.Load<Sprite>("Image/Fruit/fruit_tangerine") as Sprite,
+        Resources.Load<Sprite>("Image/Fruit/fruit_watermelon") as Sprite
     };
 
     public readonly static Sprite[] pangEfectList = new Sprite[4] {
