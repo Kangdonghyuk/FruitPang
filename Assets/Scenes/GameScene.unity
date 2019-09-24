@@ -1323,6 +1323,7 @@ MonoBehaviour:
   overScoreText: {fileID: 130579502}
   pausePanel: {fileID: 1385050837}
   overPanel: {fileID: 200224908}
+  pauseBtn: {fileID: 1060721092}
 --- !u!114 &1083935433
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -39,8 +39,6 @@ public class SystemMNG : MonoBehaviour
             string nowSceneName = SceneManager.GetActiveScene().name;
             if(nowSceneName == "MenuScene")
                 SceneManager.LoadScene("QuitScene");
-            else if(nowSceneName == "GameScene")
-                GameMNG.I.PauseBtn();
         }
     }
 

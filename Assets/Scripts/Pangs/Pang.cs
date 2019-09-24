@@ -45,11 +45,14 @@ public class Pang : MonoBehaviour
         }
 
         if(isFollowing) {
+            rigid.velocity = Vector3.zero;
             transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + (Vector3.forward * 10);
         }
 
         float x = transform.position.x, y = transform.position.y;
-        if(Mathf.Abs(x) >= 2.58f || y >= 3.87f || y <= -4.61f) {
+        if(Mathf.Abs(x) >= 2.3f || y >= 3.87 || y <= -4.25f)
+            isFollowing = false;
+        if(Mathf.Abs(x) >= 2.58f || y >= 4.5f || y <= -4.8f) {
             isFollowing = false;
             PangCreator.I.SelfDestroy(id);
         }
@@ -58,7 +61,7 @@ public class Pang : MonoBehaviour
     public int Create(int id) {
         rigid.simulated = true;
         rigid.velocity = Vector3.zero;
-        transform.position = new Vector3(Random.Range(-2.08f, 2.09f), 3.3f, 0f);
+        transform.position = new Vector3(Random.Range(-2.08f, 2.09f), 4.0f, 0f);
 
         this.id = id;
         type = (int)Random.Range(0, PangInfo.TYPE_MAX);

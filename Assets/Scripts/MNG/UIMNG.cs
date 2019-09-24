@@ -10,6 +10,7 @@ public class UIMNG : MonoBehaviour
     public Text overScoreText;
     public Transform pausePanel;
     public Transform overPanel;
+    public Button pauseBtn;
 
     void Start()
     {
@@ -38,6 +39,7 @@ public class UIMNG : MonoBehaviour
     }
 
     public void ShowOverPanel() {
+        pauseBtn.interactable = false;
         overScoreText.text = scoreText.text;
         overPanel.localPosition = Vector3.zero;
         SystemMNG.I.rankScore = int.Parse(overScoreText.text);
