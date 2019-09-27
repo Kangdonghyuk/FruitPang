@@ -10,19 +10,19 @@ public class SystemMNG : MonoBehaviour
     public int rankScore = 0;
 
     void Awake() {
-        if(I == null) {
+        DontDestroyOnLoad(this);
+        if(I == null)
             I = this;
-
-            DontDestroyOnLoad(this);
-        }
+        else
+            Destroy(gameObject);
 
         Screen.SetResolution(Screen.width, Screen.width * 18 / 9, true);
     }
 
     void Start()
     {
-        //if(SceneManager.GetActiveScene().name == "StartScene")
-        //    SceneManager.LoadScene("MenuScene");
+        if(SceneManager.GetActiveScene().name == "StartScene")
+            SceneManager.LoadScene("MenuScene");
     }
 
 
