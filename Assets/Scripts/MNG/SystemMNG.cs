@@ -22,12 +22,26 @@ public class SystemMNG : MonoBehaviour
     void Start()
     {
         if(SceneManager.GetActiveScene().name == "StartScene")
-            SceneManager.LoadScene("MenuScene");
+            StartCoroutine(LogoScene());
     }
 
+    IEnumerator LogoScene() {
+        yield return new WaitForSeconds(1.5f);
+
+        SceneManager.LoadScene("LogoScene");
+    }
+
+    IEnumerator MenuScene() {
+        yield return new WaitForSeconds(1.5f);
+
+        SceneManager.LoadScene("MenuScene");
+    }
 
     void Update()
     {
+        if(SceneManager.GetActiveScene().name == "LogoScene")
+            StartCoroutine(MenuScene());
+
         if(Input.GetKeyDown(KeyCode.Alpha1))
             SceneManager.LoadScene("StartScene");
         if(Input.GetKeyDown(KeyCode.Alpha2))
@@ -36,9 +50,8 @@ public class SystemMNG : MonoBehaviour
             SceneManager.LoadScene("GameScene");
 
         if(Input.GetKeyUp(KeyCode.Escape)) {
-            string nowSceneName = SceneManager.GetActiveScene().name;
-            if(nowSceneName == "MenuScene")
-                SceneManager.LoadScene("QuitScene");
+            if(SceneManager.GetActiveScene().name == "MenuScene")
+                Application.Quit();
         }
     }
 
