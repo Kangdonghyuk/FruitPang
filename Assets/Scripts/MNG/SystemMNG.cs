@@ -28,7 +28,7 @@ public class SystemMNG : MonoBehaviour
     IEnumerator LogoScene() {
         yield return new WaitForSeconds(1.5f);
 
-        SceneManager.LoadScene("LogoScene");
+        SceneManager.LoadScene("MenuScene");
     }
 
     IEnumerator MenuScene() {
@@ -39,8 +39,8 @@ public class SystemMNG : MonoBehaviour
 
     void Update()
     {
-        if(SceneManager.GetActiveScene().name == "LogoScene")
-            StartCoroutine(MenuScene());
+        //if(SceneManager.GetActiveScene().name == "LogoScene")
+        //    StartCoroutine(MenuScene());
 
         if(Input.GetKeyDown(KeyCode.Alpha1))
             SceneManager.LoadScene("StartScene");
