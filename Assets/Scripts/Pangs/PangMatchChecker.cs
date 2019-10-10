@@ -6,10 +6,20 @@ public class PangMatchChecker : MonoBehaviour
 {
     public static PangMatchChecker I;
 
+    public Combo combo;
+
     PangClass[] pangList;
     int[] pangChecked;
     int checkType;
     int checkedCount;
+
+    bool isCreateBomb;
+    bool isCombo;
+    public int comboCount;
+
+    float nowTime;
+    float comboTime;
+    float bombTime;
 
     void Awake() {
         I = this;
@@ -21,6 +31,12 @@ public class PangMatchChecker : MonoBehaviour
 
         checkType = 0;
         checkedCount = 0;
+
+        isCreateBomb = false;
+
+        nowTime = 0;
+        comboTime = 0;
+        bombTime = 0;
     }
     void ClearArray(int[] list, int value, int length) {
         for(int index = 0; index < length; index++)
@@ -32,7 +48,12 @@ public class PangMatchChecker : MonoBehaviour
         if(Time.timeScale == 0.0f)
             return ;
 
+        nowTime += Time.deltaTime;
+
         pangList = PangCreator.I.pangList;
+
+        if(comboTime < nowTime)
+            comboCount = 0;
 
         for(int index = 0; index < PangInfo.PANG_MAX; index++) {
             checkedCount = 1;
@@ -43,13 +64,37 @@ public class PangMatchChecker : MonoBehaviour
             }
  
             if(checkedCount >= 3) {
-                if(Random.Range(0, 5) == 0)
+                if(comboTime >= nowTime) {
+                    comboCount += 1;
+                    comboTime = nowTime + 1.0f;
+                    combo.SetCombo(comboCount);
+                }
+                if(comboTime < nowTime) {
+                    comboCount = 1;
+                    comboTime = nowTime + 1.0f;
+                    combo.SetCombo(comboCount);
+                }
+
+                if(bombTime >= nowTime) {
                     ItemCreator.I.CreateItem();
+                    bombTime = nowTime + 0.5f;
+                }
+                if(bombTime < nowTime) {
+                    bombTime = nowTime + 0.5f;
+                }
+
+                /*if(isCreateBomb) {
+                    ItemCreator.I.CreateItem();
+                    isCreateBomb = false;
+                }
+                else
+                    StartCoroutine(CheckCreateBomb());*/
+
                 for(int checkedIndex = 0; checkedIndex < PangInfo.PANG_MAX; checkedIndex++) {
                     if(pangChecked[checkedIndex] == 1)
                         PangCreator.I.Destroy(checkedIndex);
                 }
-                GameMNG.I.AddScore(checkedCount);
+                GameMNG.I.AddScore(checkedCount + comboCount);
                 break;
             }
         }
@@ -65,9 +110,17 @@ public class PangMatchChecker : MonoBehaviour
 
         for(int index = 0; index < PangInfo.PANG_MAX; index++) {
             if(pangList[index].isActive == true) {
-                if(IsNear(position, pangList[index].position, 1.55f) == true)
+                if(IsNear(position, pangList[index].position, 1.55f) == true) {
                     PangCreator.I.Destroy(index);
+                    GameMNG.I.AddScore(1);
+                }
             }
+        }
+
+        if(comboTime >= nowTime) {
+            comboCount += 1;
+            comboTime = nowTime + 1.0f;
+            combo.SetCombo(comboCount);
         }
 
         ItemCreator.I.Boom();
