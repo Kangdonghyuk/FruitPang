@@ -52,8 +52,8 @@ public class PangMatchChecker : MonoBehaviour
 
         pangList = PangCreator.I.pangList;
 
-        if(comboTime < nowTime)
-            comboCount = 0;
+        //if(comboTime < nowTime)
+        //    comboCount = 0;
 
         for(int index = 0; index < PangInfo.PANG_MAX; index++) {
             checkedCount = 1;
@@ -64,7 +64,7 @@ public class PangMatchChecker : MonoBehaviour
             }
  
             if(checkedCount >= 3) {
-                if(comboTime >= nowTime) {
+                /*if(comboTime >= nowTime) {
                     comboCount += 1;
                     comboTime = nowTime + 1.0f;
                     combo.SetCombo(comboCount);
@@ -73,7 +73,8 @@ public class PangMatchChecker : MonoBehaviour
                     comboCount = 1;
                     comboTime = nowTime + 1.0f;
                     combo.SetCombo(comboCount);
-                }
+                }*/
+                comboCount = combo.AddCombo();
 
                 if(bombTime >= nowTime) {
                     ItemCreator.I.CreateItem();
@@ -82,13 +83,6 @@ public class PangMatchChecker : MonoBehaviour
                 if(bombTime < nowTime) {
                     bombTime = nowTime + 0.5f;
                 }
-
-                /*if(isCreateBomb) {
-                    ItemCreator.I.CreateItem();
-                    isCreateBomb = false;
-                }
-                else
-                    StartCoroutine(CheckCreateBomb());*/
 
                 for(int checkedIndex = 0; checkedIndex < PangInfo.PANG_MAX; checkedIndex++) {
                     if(pangChecked[checkedIndex] == 1)
@@ -117,11 +111,12 @@ public class PangMatchChecker : MonoBehaviour
             }
         }
 
-        if(comboTime >= nowTime) {
+        /*if(comboTime >= nowTime) {
             comboCount += 1;
             comboTime = nowTime + 1.0f;
             combo.SetCombo(comboCount);
-        }
+        }*/
+        comboCount = combo.AddCombo();
 
         ItemCreator.I.Boom();
         GameMNG.I.AddScore(10);
