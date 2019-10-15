@@ -11,6 +11,7 @@ public class UIMNG : MonoBehaviour
     public Transform pausePanel;
     public Transform overPanel;
     public Button pauseBtn;
+    public TimeBar time;
 
     void Start()
     {
@@ -25,6 +26,7 @@ public class UIMNG : MonoBehaviour
 
     public void SetTimeBarValue(float value) {
         timeBar.value = value;
+        time.SetValue(value);
     }
 
     public void AddScore(int score) {
