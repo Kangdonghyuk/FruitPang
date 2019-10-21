@@ -1,7 +1,8 @@
-#FruitPang
+# FruitPang
 
 
-#Explain
+# Explain
+
 똑같은 모양의 과일이 3개 이상 모이면 터지는 3-Match 게임입니다.
 
 손가락으로 과일을 드래그해서 원하는 곳으로 자유롭게 이동시킬 수 있습니다.
@@ -14,4 +15,4 @@
 
 [high school original code](https://github.com/Kangdonghyuk/Highschool-Project/tree/master/Unity/DGP).
 
-###OpenGames
+### OpenGames
